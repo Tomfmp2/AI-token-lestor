@@ -1,17 +1,17 @@
 import { encoding_for_model } from "tiktoken";
 import fs from "fs";
 
-function cienAñosDeSoledad() {
+const texto = () => {
     const text = fs.readFileSync("CienAñosDeSoledad.txt", "utf-8");
     return text;
 }
 
-async function contarTokens() {
+async function contarTokens(textoInput) {
     // seleccionar el modelo gpt-3.5 pro gpt 4 etc..
     const encoding = encoding_for_model("gpt-4");
 
     // ingresar el texto a utilizar
-    const text = cienAñosDeSoledad();
+    const text = textoInput;
 
     // codificar el texto a tokens
     const generado = encoding.encode(text);
@@ -27,4 +27,4 @@ async function contarTokens() {
 
 }
 
-contarTokens();
+contarTokens(texto())
